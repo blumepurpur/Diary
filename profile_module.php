@@ -24,18 +24,19 @@ SQL;
 		);
 	}
 	
-	public function read()
+	public function read($parameter)
 	{
 		$query=<<<SQL
-		select * from profile
+		select * from profile where id_profile=?
 SQL;
-		$this->DB->$query($query);
+		$this->DB->$query($query,array ($parameter));
 	}
 	
 	public function update($parameter,$option,$name)
 	{
-	//case 1 to inactivate
-	//case 2 to activate
+		//case 1 inactivate the profile
+		//case 2 activate the profile
+		//case 3 update the name of the profile
 	
 		switch ($option) {
 	        case 1:
@@ -70,9 +71,9 @@ SQL;
 	public function delete($parameter)
 	{
 		$query=<<<SQL
-		delete from profile where id_profile=$parameter
+		delete from profile where id_profile=?
 SQL;
-		$this->DB->$query($query);
+		$this->DB->$query($query,$parameter);
 	}
 }
 include_once ('config.php');
