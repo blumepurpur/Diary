@@ -6,7 +6,7 @@ class profile implements CRUD
 		
 	}
 	
-	public function create()
+	public function create($parameters)
 	{
 		$query=<<<SQL
 		insert into profile
@@ -15,13 +15,7 @@ class profile implements CRUD
 			active
 		)values(?,?)
 SQL;
-		$this->DB->$query($query,
-		array
-		(
-			$_POST['profile'],
-			1
-		)
-		);
+		$this->DB->$query($query,$parameters);
 	}
 	
 	public function read($parameter)
@@ -32,40 +26,14 @@ SQL;
 		$this->DB->$query($query,array ($parameter));
 	}
 	
-	public function update($parameter,$option,$name)
+	public function update($id,$set)
 	{
-		//case 1 inactivate the profile
-		//case 2 activate the profile
-		//case 3 update the name of the profile
-	
-		switch ($option) {
-	        case 1:
 	        	$query=<<<SQL
 				update profile
-				set active=0
-				where id_profile=$parameter
+				set $set
+				where id_profile=?
 SQL;
-				$this->DB->query($query,8);
-	        break;
-	        case 2:
-	        	$query=<<<SQL
-				update profile
-				set active=1
-				where id_profile=$parameter
-SQL;
-				$this->DB->query($query,8);
-	        break;
-	        case 3:
-	        	$query=<<<SQL
-				update profile
-				set profile=$name
-				where id_profile=$parameter
-SQL;
-				$this->DB->query($query,8);
-	        break;
-	        default: echo 'Profile: This id does not exit';
-	        break;
-		}
+				$this->DB->query($query,$id);
 	}
 	
 	public function delete($parameter)

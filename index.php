@@ -24,7 +24,7 @@ class Diary
 			print('Error 2: '.$exception->getMessage());
 			die();
 		}
-	*/
+	*/	
 	}
 	
 	private function setUser()
