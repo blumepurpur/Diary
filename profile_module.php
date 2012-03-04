@@ -1,11 +1,6 @@
 <?php
-class profile implements CRUD
-{
-	public function __construct()
-	{
-		
-	}
-	
+class Profile implements CRUD
+{	
 	public function create($parameters)
 	{
 		$query=<<<SQL
@@ -39,7 +34,8 @@ SQL;
 	public function delete($parameter)
 	{
 		$query=<<<SQL
-		delete from profile where id_profile=?
+		delete from profile
+		where id_profile=?
 SQL;
 		$this->DB->$query($query,$parameter);
 	}

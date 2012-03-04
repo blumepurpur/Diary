@@ -5,21 +5,21 @@
 </head>
 <body>
 <div class="form">
-<div class="header">
-<!--  &nsb;-->
-Please choose the profile to modify
+	<div class="header">
+	<!--  &nsb;-->
+	Please choose the profile to modify
+	</div>
+		<form action="" method="get">
+		<label>Profile</label>
+		<input></input>
+	
+
+		<label>Profile</label>
+		<select id="profile" >
+		<option>Webmaster</option>
+		</select> 
+
+		</form>
 </div>
-<div 
-<form action="" method="get">
-<label>Profile</label>
-<input></input>
-<div>
-<label>Profile</label>
-<select id="profile" >
-<option>Webmaster</option>
-</select> 
-</div>
-</form>
-</div>
-</body>
-</html>
+	</body>
+	</html>
