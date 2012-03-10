@@ -44,3 +44,21 @@ textarea:focus, input:focus {
 	background-color:   #0aa390;
 	font-size:          14px;
 }
+
+/* links without any alteration*/
+a:link {
+    text-decoration: none;
+color: #00a;
+}
+/* visited link */
+a:visited {
+color: #a00;
+}
+/* hover */
+a:hover {
+    text-decoration: underline;
+}
+/* active link */
+a:active {
+    font-weight: bold;
+}

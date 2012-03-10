@@ -5,7 +5,7 @@
  * @author Johanna Hurtado
  *
  */
-class Profile implements CRUD
+class Profile implements CRUD,DB
 {	
 /**
  * This function create a new profile 

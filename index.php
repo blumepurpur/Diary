@@ -11,8 +11,7 @@ class Diary
 			$GLOBALS['config']['db']['username'],
 			$GLOBALS['config']['db']['password']
 		);	
-		$this->setUser();
-	/*	try
+		/*	try
 		{			
 			$this->DB->beginTransaction();
 			$this->DB->exec($query);
@@ -25,23 +24,6 @@ class Diary
 			die();
 		}
 	*/	
-	}
-	
-	private function setUser()
-	{
-		$query=<<<SQL
-		insert into users 
-		( 
-		  name,
-		  lastname,
-		  username,
-		  password,
-		  id_profile,
-		  active
-		)
-	    values(?,?,?,?,?,?)
-SQL;
-		$this->DB->query($query,array('Johanna','Hurtado','52','52',1,1));
 	}
 }
 
