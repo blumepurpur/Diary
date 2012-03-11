@@ -4,6 +4,15 @@
 <link rel="stylesheet" type="text/css" href="UI/profile.css" />
 </head>
 <body>
+<div align="center">
+<ul>
+<li><a href="#Profiles">Profiles</a></li>
+<li><a href="#Create">Create</a></li>
+<li><a href="#Modify">Modify</a></li>
+<li><a href="#Delete">Delete</a></li>
+</ul>
+
+</div>
 <div class="form">
 	<div class="header">
 	<!--  &nsb;-->
