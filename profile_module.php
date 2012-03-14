@@ -5,13 +5,19 @@
  * @author Johanna Hurtado
  *
  */
-class Profile implements CRUD,DB
-{	
+class Profile implements CRUD
+{
+	private $DB; 
+	public function __construct(DB $DB)
+	{
+		$this->DB=$DB;
+	}
 /**
  * This function create a new profile 
  * @see CRUD::create()
  * @param $parameters 
  */
+	
 	public function create($parameters)
 	{
 		$query=<<<SQL
@@ -39,18 +45,23 @@ SQL;
 /**
  * (non-PHPdoc)
  * @see CRUD::update()
+ * 
+ * SET
+ * array
+ * (
+ * 	'name'=>'tim'
+ * )
  */
-	public function update(Array $set=array(),Array $id=array())
+	public function update(Array $set=array(),Array $where=array())
 	{
 		//IM NOT SURE IF IT WORKS FOR STRING VALUES AND NUMBERS
-		for($i=0,$cont=count($set);$i<$cont;$i++)
+		$query='update profile set ';
+		$sets=array();
+		foreach ($set as $key=>$value)
 		{
-			$set_query=key($set);
-			$id_query=key($id);
-			$query='update profile set '.$set_query.' = '."'$set[$set_query]'".' where '.$id_query.' = '.$id[$id_query];
-			next($set);
-			var_dump($query);
+			$sets[]='"'.$key.'"="'.$value.'"';
 		}
+		$query.=implode(',',$sets);
 	}
 /**
  * This function delete a profile 
