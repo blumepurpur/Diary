@@ -7,7 +7,7 @@
  * @version 1.0
  *
  */
-class TypeDiary implements CRUD,DB
+class TypeDiary implements CRUD
 {
 	/**
 	 * @see CRUD::create()

@@ -6,7 +6,7 @@
  * @since 10-march-2012 
  * @version 1.0
  */
-class user implements CRUD,DB
+class user implements CRUD
 {
 	/**
 	 * @see CRUD::create()
