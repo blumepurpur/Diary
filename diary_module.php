@@ -10,9 +10,6 @@
 class TypeDiary implements CRUD,DB
 {
 	/**
-	 * This function create a type of diary
-	 * @param $parameter identificator of the diary
-	 * @return void
 	 * @see CRUD::create()
 	 */
 	public function create($parameters)
@@ -28,9 +25,6 @@ SQL;
 		$this->DB->$query($query,$parameters);
 	}
 	/**
-	 * This function read a type of diary
-	 * @param $parameter identificator of the diary
-	 * @return void
 	 * @see CRUD::read()
 	 */
 	public function read($parameter)
@@ -40,15 +34,29 @@ SQL;
 SQL;
 		$this->DB->$query($query,$parameter);
 	}
-	
+	/**
+	 * @see CRUD::update()
+	 */
 	public function update()
 	{
+		$query='update type_diary set ';
+		$sets=array();
+		$where_array=array();
+		foreach ($set as $key=>$value)
+		{
+			$sets[]=$key.'='.'"'.$value.'"';
+		}
+		$query.=implode(',',$sets);
+		$query.=' where ';
 		
+		foreach ($where as $key=>$value)
+		{
+			$where_array[]=$key.'='.'"'.$value.'"';
+		}
+		$query.=implode(' and ',$where_array).'';
+		$this->DB->$query($query);
 	}
 	/**
-	 * This function delete a type of diary
-	 * @param $parameter identificator of the diary
-	 * @return void
 	 * @see CRUD::delete()
 	 */
 	public function delete($parameter)

@@ -8,16 +8,20 @@
 class Profile implements CRUD
 {
 	private $DB; 
+	/**
+	 * 
+	 * This is the construct of the class
+	 * @param DB $DB
+	 * @return void
+	 */
 	public function __construct(DB $DB)
 	{
 		$this->DB=$DB;
 	}
-/**
- * This function create a new profile 
- * @see CRUD::create()
- * @param $parameters 
- */
-	
+	/**
+	 * 
+	 * @see CRUD::create()
+	 */	
 	public function create($parameters)
 	{
 		$query=<<<SQL
@@ -29,12 +33,11 @@ class Profile implements CRUD
 SQL;
 		$this->DB->$query($query,$parameters);
 	}
-/**
- * this function read the specific profile based on the parameter
- * @see CRUD::read()
- * @param parameter indicates which profile is going to be read
- * @return void
- */
+	/**
+	 * 
+	 * @see CRUD::read()
+	 * 
+	 */
 	public function read($parameter)
 	{
 		$query=<<<SQL
@@ -42,33 +45,33 @@ SQL;
 SQL;
 		$this->DB->$query($query,array ($parameter));
 	}
-/**
- * (non-PHPdoc)
- * @see CRUD::update()
- * 
- * SET
- * array
- * (
- * 	'name'=>'tim'
- * )
- */
+	/**
+	 * @see CRUD::update()
+	 * 
+	 */
 	public function update(Array $set=array(),Array $where=array())
 	{
-		//IM NOT SURE IF IT WORKS FOR STRING VALUES AND NUMBERS
 		$query='update profile set ';
 		$sets=array();
+		$where_array=array();
 		foreach ($set as $key=>$value)
 		{
-			$sets[]='"'.$key.'"="'.$value.'"';
+			$sets[]=$key.'='.'"'.$value.'"';
 		}
 		$query.=implode(',',$sets);
+		$query.=' where ';
+		
+		foreach ($where as $key=>$value)
+		{
+			$where_array[]=$key.'='.'"'.$value.'"';
+		}
+		$query.=implode(' and ',$where_array).'';
+		$this->DB->$query($query);
 	}
-/**
- * This function delete a profile 
- * @see CRUD::delete()
- * @param $parameter id of the profile to delete
- * @return void
- */
+	/**
+	 * 
+	 * @see CRUD::delete()
+	 */
 	public function delete($parameter)
 	{
 		$query=<<<SQL

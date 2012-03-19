@@ -9,9 +9,6 @@
 class user implements CRUD,DB
 {
 	/**
-	 * This function create a new user
-	 * @param $parameters details of the new user
-	 * @return void
 	 * @see CRUD::create()
 	 */
 	public function create($parameters)
@@ -31,9 +28,6 @@ SQL;
 		$this->DB->query($query,$parameters);
 	}
 	/**
-	 * This function read the details of a specific user
-	 * @param $parameter identificator of the user
-	 * @return void
 	 * @see CRUD::read()
 	 */
 	public function read($parameter)
@@ -44,14 +38,30 @@ SQL;
 SQL;
 		$this->DB->$query($query,$parameter);
 	}
+	/**
+	 * 
+	 * @see CRUD::update()
+	 */
 	public function update()
 	{
+		$query='update users set ';
+		$sets=array();
+		$where_array=array();
+		foreach ($set as $key=>$value)
+		{
+			$sets[]=$key.'='.'"'.$value.'"';
+		}
+		$query.=implode(',',$sets);
+		$query.=' where ';
 		
+		foreach ($where as $key=>$value)
+		{
+			$where_array[]=$key.'='.'"'.$value.'"';
+		}
+		$query.=implode(' and ',$where_array).'';
+		$this->DB->$query($query);
 	}
 	/**
-	 * This function delete a user
-	 * @param $parameter identificator of the user
-	 * @return void
 	 * @see CRUD::delete()
 	 */
 	public function delete($parameter)
